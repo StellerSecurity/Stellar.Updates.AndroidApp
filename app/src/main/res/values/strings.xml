@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Stellar Updates</string>
+    <string name="title">Title</string>
+    <string name="item_desp">Norem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="no_data">No Data</string>
+    <string name="updates_notification_channel" translatable="false">updates_channel</string>
+
+</resources>
