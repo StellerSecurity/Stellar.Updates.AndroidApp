@@ -18,13 +18,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.Stellar.Updates.AndroidApp.stellarupdates.API.APIRepository;
+import com.Stellar.Updates.AndroidApp.stellarupdates.API.RetrofitClient;
 import com.Stellar.Updates.AndroidApp.stellarupdates.adapters.ItemsAdapter;
 import com.Stellar.Updates.AndroidApp.stellarupdates.databinding.ActivityMainBinding;
 import com.Stellar.Updates.AndroidApp.stellarupdates.models.Item;
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.Notification;
+import com.Stellar.Updates.AndroidApp.stellarupdates.services.Constants;
 import com.Stellar.Updates.AndroidApp.stellarupdates.services.StellerBackgroundService;
 import com.Stellar.Updates.AndroidApp.stellarupdates.viewmodels.MainViewModel;
 
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private ItemsAdapter mAdapter;
     private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 123;
     private NotificationChannel channel;
-    private String channelId = "updates_channel", channelName = "Steller Updates";
 
 
     @Override
@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        APIRepository repository = new APIRepository(RetrofitClient.getApiCalls());
+        mainViewModel = new MainViewModel(repository);
 
 
         listItems = new ArrayList<Item>();
@@ -54,14 +55,10 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ItemsAdapter(this, listItems);
 
 
-//        checkNotificationPermission();
+        //        checkNotificationPermission();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            channel = new NotificationChannel(
-                    channelId,
-                    channelName,
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
+            channel = new NotificationChannel(Constants.channelId, Constants.channelName, NotificationManager.IMPORTANCE_DEFAULT);
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
@@ -89,22 +86,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        mainViewModel.getMutableHaveNotif().observe(this, new Observer<Notification>() {
-            @Override
-            public void onChanged(Notification notification) {
-                Log.d("CallAPI", "onchange: checking have notification");
 
-                if (notification != null) {
-                    showNotification(notification.getTitle(), notification.getMessage());
-                }
-            }
-        });
-mainViewModel.callUpdates();
+
+        mainViewModel.readUpdates();
 
         binding.refreshUpdates.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mainViewModel.callUpdates();
+                mainViewModel.readUpdates();
             }
         });
 
@@ -123,9 +112,6 @@ mainViewModel.callUpdates();
         }
     }
 
-    private boolean areNotificationsEnabled() {
-        return NotificationManagerCompat.from(this).areNotificationsEnabled();
-    }
 
     private void showPermissionDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -143,7 +129,6 @@ mainViewModel.callUpdates();
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Handle the user's choice to not enable notifications
             }
         });
 
@@ -161,24 +146,11 @@ mainViewModel.callUpdates();
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
-            // Check notification permission again after the user has taken action in settings
             checkNotificationPermission();
             mainViewModel.callUpdates();
         }
     }
 
-    public void showNotification(String title, String body) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(body)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        Log.d("CallAPI", "on showing:   checking have notification");
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        checkNotificationPermission();
-        notificationManager.notify(1, builder.build());
-    }
 
 
 }

@@ -1,11 +1,16 @@
 package com.Stellar.Updates.AndroidApp.stellarupdates.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class API_Response {
+public class API_Response implements Parcelable {
 
     @SerializedName("items")
     @Expose
@@ -13,6 +18,21 @@ public class API_Response {
     @SerializedName("notification")
     @Expose
     private Notification notification;
+
+    protected API_Response(Parcel in) {
+    }
+
+    public static final Creator<API_Response> CREATOR = new Creator<API_Response>() {
+        @Override
+        public API_Response createFromParcel(Parcel in) {
+            return new API_Response(in);
+        }
+
+        @Override
+        public API_Response[] newArray(int size) {
+            return new API_Response[size];
+        }
+    };
 
     public List<Item> getItems() {
         return items;
@@ -30,4 +50,12 @@ public class API_Response {
         this.notification = notification;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+    }
 }
