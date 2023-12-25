@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.progress.setVisibility(View.VISIBLE);
         APIRepository repository = new APIRepository(RetrofitClient.getApiCalls());
         mainViewModel = new MainViewModel(repository);
 
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     mAdapter.setData(listItems);
                     binding.listUpdates.setAdapter(mAdapter);
 
+                    binding.progress.setVisibility(View.GONE);
                     binding.tvNoResultsData.setVisibility(View.GONE);
                 } else {
                     binding.tvNoResultsData.setVisibility(View.VISIBLE);
@@ -93,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         binding.refreshUpdates.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
+                binding.progress.setVisibility(View.VISIBLE);
                 mainViewModel.readUpdates();
             }
         });
