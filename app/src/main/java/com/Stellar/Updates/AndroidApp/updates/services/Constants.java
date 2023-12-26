@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.services;
+package com.Stellar.Updates.AndroidApp.updates.services;
 
 public interface Constants {
     public static String channelId = "updates_channel", channelName = "Steller Updates";

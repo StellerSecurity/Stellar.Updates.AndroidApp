@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.adapters;
+package com.Stellar.Updates.AndroidApp.updates.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.utils.widget.ImageFilterView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Stellar.Updates.AndroidApp.stellarupdates.R;
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.Item;
+import com.Stellar.Updates.AndroidApp.updates.R;
+import com.Stellar.Updates.AndroidApp.updates.models.Item;
 
 import java.util.List;
 

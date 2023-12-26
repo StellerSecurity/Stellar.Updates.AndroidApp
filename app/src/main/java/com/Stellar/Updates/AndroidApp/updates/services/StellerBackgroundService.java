@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.services;
+package com.Stellar.Updates.AndroidApp.updates.services;
 
 import android.Manifest;
 import android.app.Service;
@@ -13,10 +13,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.Stellar.Updates.AndroidApp.stellarupdates.API.APIRepository;
-import com.Stellar.Updates.AndroidApp.stellarupdates.API.RetrofitClient;
-import com.Stellar.Updates.AndroidApp.stellarupdates.R;
-import com.Stellar.Updates.AndroidApp.stellarupdates.viewmodels.MainViewModel;
+import com.Stellar.Updates.AndroidApp.updates.API.APIRepository;
+import com.Stellar.Updates.AndroidApp.updates.API.RetrofitClient;
+import com.Stellar.Updates.AndroidApp.updates.R;
+import com.Stellar.Updates.AndroidApp.updates.viewmodels.MainViewModel;
 
 public class StellerBackgroundService extends Service {
     private MainViewModel mainViewModel;

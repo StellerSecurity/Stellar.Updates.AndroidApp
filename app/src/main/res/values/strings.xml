@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stellar Updates</string>
+    <string name="app_name">Updates</string>
     <string name="title">Title</string>
     <string name="item_desp">Norem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="no_data">No Data</string>

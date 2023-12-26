@@ -1,20 +1,18 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.viewmodels;
+package com.Stellar.Updates.AndroidApp.updates.viewmodels;
 
-import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.Stellar.Updates.AndroidApp.stellarupdates.API.APIRepository;
-import com.Stellar.Updates.AndroidApp.stellarupdates.API.ApiCalls;
-import com.Stellar.Updates.AndroidApp.stellarupdates.API.RetrofitClient;
-import com.Stellar.Updates.AndroidApp.stellarupdates.MainApplication;
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.API_Response;
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.Item;
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.Notification;
-import com.Stellar.Updates.AndroidApp.stellarupdates.services.Constants;
-import com.Stellar.Updates.AndroidApp.stellarupdates.services.StellerBackgroundService;
+import com.Stellar.Updates.AndroidApp.updates.API.APIRepository;
+import com.Stellar.Updates.AndroidApp.updates.API.ApiCalls;
+import com.Stellar.Updates.AndroidApp.updates.API.RetrofitClient;
+import com.Stellar.Updates.AndroidApp.updates.MainApplication;
+import com.Stellar.Updates.AndroidApp.updates.models.API_Response;
+import com.Stellar.Updates.AndroidApp.updates.models.Item;
+import com.Stellar.Updates.AndroidApp.updates.models.Notification;
+import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 
 import java.util.List;
 

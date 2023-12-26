@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.Stellar.Updates.AndroidApp.stellarupdates'
+    namespace 'com.Stellar.Updates.AndroidApp.updates'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.Stellar.Updates.AndroidApp.stellarupdates"
+        applicationId "com.Stellar.Updates.AndroidApp.updates"
         minSdk 27
         targetSdk 33
         versionCode 1

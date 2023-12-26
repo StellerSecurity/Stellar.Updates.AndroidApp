@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.API;
+package com.Stellar.Updates.AndroidApp.updates.API;
 
 
 import android.util.Log;
@@ -6,8 +6,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.API_Response;
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.Item;
+import com.Stellar.Updates.AndroidApp.updates.models.API_Response;
+import com.Stellar.Updates.AndroidApp.updates.models.Item;
 
 import java.util.List;
 

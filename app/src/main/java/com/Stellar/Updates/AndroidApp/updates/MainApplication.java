@@ -1,10 +1,10 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates;
+package com.Stellar.Updates.AndroidApp.updates;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
-import com.Stellar.Updates.AndroidApp.stellarupdates.services.StellerBackgroundService;
+import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 
 public class MainApplication extends Application {
     private static Context context = null;

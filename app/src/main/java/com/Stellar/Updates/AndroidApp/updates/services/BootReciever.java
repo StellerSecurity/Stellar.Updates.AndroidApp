@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.services;
+package com.Stellar.Updates.AndroidApp.updates.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

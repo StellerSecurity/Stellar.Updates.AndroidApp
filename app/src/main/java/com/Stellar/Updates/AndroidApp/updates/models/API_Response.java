@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.models;
+package com.Stellar.Updates.AndroidApp.updates.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

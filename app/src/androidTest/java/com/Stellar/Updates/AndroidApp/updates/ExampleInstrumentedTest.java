@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates;
+package com.Stellar.Updates.AndroidApp.updates;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates;
+package com.Stellar.Updates.AndroidApp.updates;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -15,19 +15,17 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.Stellar.Updates.AndroidApp.stellarupdates.API.APIRepository;
-import com.Stellar.Updates.AndroidApp.stellarupdates.API.RetrofitClient;
-import com.Stellar.Updates.AndroidApp.stellarupdates.adapters.ItemsAdapter;
-import com.Stellar.Updates.AndroidApp.stellarupdates.databinding.ActivityMainBinding;
-import com.Stellar.Updates.AndroidApp.stellarupdates.models.Item;
-import com.Stellar.Updates.AndroidApp.stellarupdates.services.Constants;
-import com.Stellar.Updates.AndroidApp.stellarupdates.services.StellerBackgroundService;
-import com.Stellar.Updates.AndroidApp.stellarupdates.viewmodels.MainViewModel;
+import com.Stellar.Updates.AndroidApp.updates.API.APIRepository;
+import com.Stellar.Updates.AndroidApp.updates.API.RetrofitClient;
+import com.Stellar.Updates.AndroidApp.updates.adapters.ItemsAdapter;
+import com.Stellar.Updates.AndroidApp.updates.databinding.ActivityMainBinding;
+import com.Stellar.Updates.AndroidApp.updates.models.Item;
+import com.Stellar.Updates.AndroidApp.updates.services.Constants;
+import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
+import com.Stellar.Updates.AndroidApp.updates.viewmodels.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.Stellar.Updates.AndroidApp.stellarupdates.API;
+package com.Stellar.Updates.AndroidApp.updates.API;
 
 import java.util.HashMap;
 import java.util.Map;
