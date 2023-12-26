@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -24,6 +25,7 @@ import com.Stellar.Updates.AndroidApp.updates.adapters.ItemsAdapter;
 import com.Stellar.Updates.AndroidApp.updates.databinding.ActivityMainBinding;
 import com.Stellar.Updates.AndroidApp.updates.models.Item;
 import com.Stellar.Updates.AndroidApp.updates.services.Constants;
+import com.Stellar.Updates.AndroidApp.updates.services.OpenBrowser;
 import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 import com.Stellar.Updates.AndroidApp.updates.viewmodels.MainViewModel;
 
@@ -51,10 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
         listItems = new ArrayList<Item>();
 
-        mAdapter = new ItemsAdapter(this, listItems);
+        mAdapter = new ItemsAdapter(this, listItems, new OpenBrowser() {
+            @Override
+            public void openBrowserEvent(String url) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
 
 
-        //        checkNotificationPermission();
+        //checkNotificationPermission();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             channel = new NotificationChannel(Constants.channelId, Constants.channelName, NotificationManager.IMPORTANCE_DEFAULT);
@@ -152,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
             mainViewModel.callUpdates();
         }
     }
-
 
 
 }

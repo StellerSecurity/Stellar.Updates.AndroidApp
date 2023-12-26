@@ -2,6 +2,8 @@ package com.Stellar.Updates.AndroidApp.updates.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.Stellar.Updates.AndroidApp.updates.R;
 import com.Stellar.Updates.AndroidApp.updates.models.Item;
+import com.Stellar.Updates.AndroidApp.updates.services.OpenBrowser;
 
 import java.util.List;
 
@@ -20,9 +23,11 @@ import java.util.List;
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder> {
     private Context context;
     private List<Item> items;
+    private OpenBrowser openBrowser;
 
-    public ItemsAdapter(Context context, List<Item> items) {
+    public ItemsAdapter(Context context, List<Item> items, OpenBrowser openBrowser) {
         this.context = context;
+        this.openBrowser = openBrowser;
         this.items = items;
     }
 
@@ -46,6 +51,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder
         Item model = items.get(position);
         holder.tvNotification.setText(model.getDescription() + "");
         holder.tvTitle.setText(model.getTitle() + "");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openBrowser.openBrowserEvent(model.getHref() + "");
+
+            }
+        });
 
     }
 
