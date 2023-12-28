@@ -17,6 +17,10 @@ public class Item {
     @SerializedName("date")
     @Expose
     private String date;
+
+    @SerializedName("read")
+    @Expose
+    private Boolean read;
     private boolean hasNotification;
 
     public boolean isHasNotification() {
@@ -59,4 +63,11 @@ public class Item {
         this.date = date;
     }
 
+    public Boolean getRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
+    }
 }

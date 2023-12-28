@@ -2,8 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_a">#FDFDFD</color>
     <color name="textBlack">#0B1319</color>
     <color name="white_off">#FAFAFA</color>
     <color name="grey">#6E7286</color>
+    <color name="selection">#ACB2CF</color>
 
 </resources>
