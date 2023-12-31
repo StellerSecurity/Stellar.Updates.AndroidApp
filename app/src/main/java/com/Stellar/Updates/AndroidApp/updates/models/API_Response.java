@@ -18,6 +18,9 @@ public class API_Response implements Parcelable {
     @SerializedName("notification")
     @Expose
     private Notification notification;
+    @SerializedName("last_update")
+    @Expose
+    private LastUpdate lastUpdate;
 
     protected API_Response(Parcel in) {
     }
@@ -57,5 +60,13 @@ public class API_Response implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
+    }
+
+    public LastUpdate getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LastUpdate lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

@@ -47,6 +47,7 @@
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/ic_info"
+        app:layout_constraintRight_toLeftOf="@+id/ic_arrow"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintVertical_chainStyle="packed" />

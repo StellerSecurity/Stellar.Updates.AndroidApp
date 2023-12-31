@@ -26,6 +26,7 @@ import com.Stellar.Updates.AndroidApp.updates.databinding.ActivityMainBinding;
 import com.Stellar.Updates.AndroidApp.updates.models.Item;
 import com.Stellar.Updates.AndroidApp.updates.services.Constants;
 import com.Stellar.Updates.AndroidApp.updates.services.OpenBrowser;
+import com.Stellar.Updates.AndroidApp.updates.services.SharedPrefHelper;
 import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 import com.Stellar.Updates.AndroidApp.updates.viewmodels.MainViewModel;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 123;
     private NotificationChannel channel;
 
+    private SharedPrefHelper prefHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         APIRepository repository = new APIRepository(RetrofitClient.getApiCalls());
         mainViewModel = new MainViewModel(repository);
 
-
+        prefHelper = SharedPrefHelper.getInstance();
         listItems = new ArrayList<Item>();
 
         mAdapter = new ItemsAdapter(this, listItems, new OpenBrowser() {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        prefHelper.save(Constants.LAST_UPDATED_Time, 0);
 
         //checkNotificationPermission();
 
@@ -157,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
             checkNotificationPermission();
-            mainViewModel.callUpdates();
+            mainViewModel.readUpdates();
         }
     }
 

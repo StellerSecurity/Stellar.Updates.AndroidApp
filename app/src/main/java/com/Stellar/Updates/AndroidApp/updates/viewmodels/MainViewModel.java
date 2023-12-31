@@ -12,6 +12,8 @@ import com.Stellar.Updates.AndroidApp.updates.MainApplication;
 import com.Stellar.Updates.AndroidApp.updates.models.API_Response;
 import com.Stellar.Updates.AndroidApp.updates.models.Item;
 import com.Stellar.Updates.AndroidApp.updates.models.Notification;
+import com.Stellar.Updates.AndroidApp.updates.services.Constants;
+import com.Stellar.Updates.AndroidApp.updates.services.SharedPrefHelper;
 import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 
 import java.util.List;
@@ -22,6 +24,7 @@ import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
     private APIRepository repository;
+    private SharedPrefHelper prefHelper;
     private MutableLiveData<Notification> mutableHaveNotif = new MutableLiveData<>();
     private MutableLiveData<List<Item>> mutableListItems = new MutableLiveData<>();
 
@@ -38,6 +41,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public void readUpdates() {
+        prefHelper = SharedPrefHelper.getInstance();
         repository.fetchUpdatesFromApi().observeForever(api_response -> {
             if (api_response != null) {
                 API_Response mResponse = api_response;
@@ -47,6 +51,8 @@ public class MainViewModel extends ViewModel {
                 Log.d("CallAPI", "onResponse: listSize " + listSize);
 
                 mutableListItems.postValue(itemList);
+                prefHelper.save(Constants.LAST_UPDATED_Time, mResponse.getLastUpdate().getTime());
+                pushUpdatedTime();
                 Log.d("CallAPI", "onResponse: checking have notification");
                 if (mResponse.getNotification() != null) {
                     boolean haveNotif = mResponse.getNotification().getSend();
@@ -54,7 +60,7 @@ public class MainViewModel extends ViewModel {
 
                     if (haveNotif) {
                         //mutableHaveNotif.postValue(mResponse.getNotification());
-                        StellerBackgroundService.showNotification(MainApplication.getAppContext(),mResponse.getNotification().getTitle(),mResponse.getNotification().getMessage());
+                        StellerBackgroundService.showNotification(MainApplication.getAppContext(), mResponse.getNotification().getTitle(), mResponse.getNotification().getMessage());
                     } else {
                         mutableHaveNotif.postValue(null);
                     }
@@ -65,9 +71,19 @@ public class MainViewModel extends ViewModel {
     }
 
 
+    private void pushUpdatedTime() {
+        prefHelper = SharedPrefHelper.getInstance();
+        ApiCalls apiCalls = RetrofitClient.getApiCalls();
+
+        Long lastUpdateTime = Long.parseLong(prefHelper.get("time", 0) + "");
+        Log.d("Response105", "pushUpdatedTime: "+lastUpdateTime);
+        apiCalls.updatedLastTime(lastUpdateTime);
+
+    }
+
 
     public void callUpdates() {
-
+        prefHelper = SharedPrefHelper.getInstance();
         ApiCalls apiCalls = RetrofitClient.getApiCalls();
         apiCalls.callForUpdates().enqueue(new Callback<API_Response>() {
             @Override
@@ -83,6 +99,7 @@ public class MainViewModel extends ViewModel {
                             Log.d("CallAPI", "onResponse: listSize " + listSize);
 
                             mutableListItems.postValue(itemList);
+//                            prefHelper.save(Constants.LAST_UPDATE, name);
                             Log.d("CallAPI", "onResponse: checking have notification");
                             if (mResponse.getNotification() != null) {
                                 boolean haveNotif = mResponse.getNotification().getSend();
