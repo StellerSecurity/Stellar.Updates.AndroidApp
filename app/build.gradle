@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.Stellar.Updates.AndroidApp.updates"
+        applicationId "stellar.updates.app"
         minSdk 27
         targetSdk 33
         versionCode 1
