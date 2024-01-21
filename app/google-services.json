@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1048099947564",
+    "project_id": "stellerupdates",
+    "storage_bucket": "stellerupdates.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048099947564:android:6a1d62c1edd0c73a8c7d89",
+        "android_client_info": {
+          "package_name": "com.Stellar.Updates.AndroidApp.updates"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtTS-BW7EkDFsk6VBVuyAp0pdCTkwB4AU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

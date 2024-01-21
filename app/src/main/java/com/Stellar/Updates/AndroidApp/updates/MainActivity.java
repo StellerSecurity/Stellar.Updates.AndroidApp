@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ItemsAdapter(this, listItems, new OpenBrowser() {
             @Override
             public void openBrowserEvent(String url) {
+
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(browserIntent);
             }

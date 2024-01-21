@@ -17,8 +17,14 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
-        Intent serviceIntent = new Intent(this, StellerBackgroundService.class);
-        startService(serviceIntent);
+       /* Intent serviceIntent = new Intent(this, StellerBackgroundService.class);
+        startService(serviceIntent);*/
+        startBackgroundService();
+
+    }
+
+    private void startBackgroundService() {
+        StellerBackgroundService.scheduleJob(this);
 
     }
 
