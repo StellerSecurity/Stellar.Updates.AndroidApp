@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 
     <application
@@ -31,26 +30,8 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/updates_notification_channel" />
-        <service
-            android:name=".services.StellerBackgroundService"
-            android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            />
 
-        <receiver
-            android:enabled="true"
-            android:exported="false"
-            android:label="RestartServiceWhenSystemBoots"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
-            android:taskAffinity=""
-            android:targetSdkVersion=""
-            android:name=".services.BootReciever">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
+
     </application>
 
 </manifest>

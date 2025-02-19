@@ -2,9 +2,6 @@ package com.Stellar.Updates.AndroidApp.updates;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
-
-import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 
 public class MainApplication extends Application {
     private static Context context = null;
@@ -24,8 +21,6 @@ public class MainApplication extends Application {
     }
 
     private void startBackgroundService() {
-        StellerBackgroundService.scheduleJob(this);
-
     }
 
 }

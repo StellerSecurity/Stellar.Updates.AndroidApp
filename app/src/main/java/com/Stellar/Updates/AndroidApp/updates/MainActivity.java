@@ -27,7 +27,6 @@ import com.Stellar.Updates.AndroidApp.updates.models.Item;
 import com.Stellar.Updates.AndroidApp.updates.services.Constants;
 import com.Stellar.Updates.AndroidApp.updates.services.OpenBrowser;
 import com.Stellar.Updates.AndroidApp.updates.services.SharedPrefHelper;
-import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 import com.Stellar.Updates.AndroidApp.updates.viewmodels.MainViewModel;
 
 import java.util.ArrayList;
@@ -111,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        startService(new Intent(this, StellerBackgroundService.class));
     }
 
 

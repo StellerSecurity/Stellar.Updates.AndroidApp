@@ -14,7 +14,6 @@ import com.Stellar.Updates.AndroidApp.updates.models.Item;
 import com.Stellar.Updates.AndroidApp.updates.models.Notification;
 import com.Stellar.Updates.AndroidApp.updates.services.Constants;
 import com.Stellar.Updates.AndroidApp.updates.services.SharedPrefHelper;
-import com.Stellar.Updates.AndroidApp.updates.services.StellerBackgroundService;
 
 import java.util.List;
 
@@ -58,12 +57,6 @@ public class MainViewModel extends ViewModel {
                     boolean haveNotif = mResponse.getNotification().getSend();
                     Log.d("CallAPI", "onResponse: " + haveNotif + " checking have notification");
 
-                    if (haveNotif) {
-                        //mutableHaveNotif.postValue(mResponse.getNotification());
-                        StellerBackgroundService.showNotification(MainApplication.getAppContext(), mResponse.getNotification().getTitle(), mResponse.getNotification().getMessage());
-                    } else {
-                        mutableHaveNotif.postValue(null);
-                    }
                 }
             }
 
